@@ -1,4 +1,4 @@
-/*jshint esversion: 8 */
+/*jshint esversion: 8, sub: true */
 const express = require('express');
 const mongoose = require('mongoose');
 const fs = require('fs');
@@ -19,10 +19,10 @@ const Dealerships = require('./dealership');
 
 try {
   Reviews.deleteMany({}).then(() => {
-    Reviews.insertMany(reviews_data['reviews']);
+    Reviews.insertMany(reviews_data.reviews);
   });
   Dealerships.deleteMany({}).then(() => {
-    Dealerships.insertMany(dealerships_data['dealerships']);
+    Dealerships.insertMany(dealerships_data.dealerships);
   });
 } catch (error) {
   console.error('Error inserting initial data:', error);
@@ -88,18 +88,18 @@ app.post('/insert_review', express.raw({ type: 'application/json' }), async (req
   try {
     const data = JSON.parse(req.body);
     const documents = await Reviews.find().sort({ id: -1 });
-    let new_id = documents.length > 0 ? documents[0]['id'] + 1 : 1;
+    let new_id = documents.length > 0 ? documents[0].id + 1 : 1;
 
     const review = new Reviews({
       "id": new_id,
-      "name": data['name'],
-      "dealership": data['dealership'],
-      "review": data['review'],
-      "purchase": data['purchase'],
-      "purchase_date": data['purchase_date'],
-      "car_make": data['car_make'],
-      "car_model": data['car_model'],
-      "car_year": data['car_year'],
+      "name": data.name,
+      "dealership": data.dealership,
+      "review": data.review,
+      "purchase": data.purchase,
+      "purchase_date": data.purchase_date,
+      "car_make": data.car_make,
+      "car_model": data.car_model,
+      "car_year": data.car_year,
     });
 
     const savedReview = await review.save();
