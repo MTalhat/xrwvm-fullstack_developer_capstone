@@ -31,7 +31,7 @@ jobs:
     - name: Run Linter
       run: |
         pwd
-        find ./server/djangoapp ./server/djangoproj -name "*.py" -exec flake8 {} +
+        find . -name "*.py" -exec flake8 {} +
         echo "Linted all the python files successfully"
 
   lint_js:
