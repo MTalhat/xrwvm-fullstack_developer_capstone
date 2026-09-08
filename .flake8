@@ -1,0 +1,4 @@
+[flake8]
+max-line-length = 120
+ignore = E501,E128,E117,W292,E302,E231,E275,E722,F401,F841,W391,E305
+exclude = .git,__pycache__,djangoenv,node_modules
